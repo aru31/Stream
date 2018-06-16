@@ -15,4 +15,8 @@ export default (state = initialState, action) => {
   }
 }
 
+export function errors(state) {
+   return  state.errors
+}
+
 export const serverRegister = (state) => state.register

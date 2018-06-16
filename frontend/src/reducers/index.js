@@ -35,6 +35,9 @@ export const serverMessage =
 export const serverRegister =
   state => fromRegister.serverRegister(state.register)
 
+export const registerError =
+  state => fromRegister.errors(state.register)
+
 export function withAuth(headers={}) {
   return (state) => ({
     ...headers,
