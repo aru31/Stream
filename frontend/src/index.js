@@ -12,7 +12,7 @@ import configureStore from './store'
 import {Route, Switch} from 'react-router'
 import Login from './containers/Login';
 import PrivateRoute from './containers/PrivateRoute';
-
+import Register from './containers/Register';
 const history = createHistory()
 const store = configureStore(history)
 
@@ -20,6 +20,7 @@ ReactDOM.render((
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
+        <Route exact path="/register/" component={Register} />
         <Route exact path="/login/" component={Login} />
         <PrivateRoute path="/" component={App}/>
       </Switch>

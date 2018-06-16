@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 import auth, * as fromAuth from './auth.js'
+import echo, * as fromEcho from './echo.js'
+import register, * as fromRegister from './register.js'
 
 export default combineReducers({
   auth: auth,
+  echo: echo,
+  register: register,
   router: routerReducer
 })
 
@@ -24,6 +28,12 @@ export const isRefreshTokenExpired =
 
 export const authErrors =
   state => fromAuth.errors(state.auth)
+
+export const serverMessage =
+  state => fromEcho.serverMessage(state.echo)
+
+export const serverRegister =
+  state => fromRegister.serverRegister(state.register)
 
 export function withAuth(headers={}) {
   return (state) => ({
