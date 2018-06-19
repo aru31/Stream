@@ -31,7 +31,7 @@ class StreamConsumer(AsyncWebsocketConsumer):
 			}
 		)
 
-	async def stream_details(self, event):
+	async def Web_stream(self, event):
 		url = event['url']
 		message = event['message']
 
