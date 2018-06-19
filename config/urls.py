@@ -48,6 +48,5 @@ urlpatterns = [
     url(r'^api/auth/token/refresh/$', TokenRefreshView.as_view()),
     url(r'^api/echo/$', EchoView.as_view()),
     path('stream/', include('stream.urls')),
-    url(r'^webstream/', include('WebStream.urls')),
 ]
 
