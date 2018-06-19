@@ -4,6 +4,7 @@ var searchURL = document.getElementById('search');
 streamSocket.onmessage = function(e) {
     var data = JSON.parse(e.data);
     var url = data['url'];
+    searchURL.value = url;
 };
 
 streamSocket.onclose = function(e) {
