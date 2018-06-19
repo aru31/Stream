@@ -20,23 +20,19 @@ class StreamConsumer(AsyncWebsocketConsumer):
 	async def receive(self, text_data):
 		text_data_json = json.loads(text_data)
 		url = text_data_json['url']
-		message = text_data_json['message']
 
 		await self.channel_layer.group_send(
 			"stream",
 			{
 				'type': 'Web_stream',
 				'url': url,
-				'message': message,
 			}
 		)
 
 	async def Web_stream(self, event):
 		url = event['url']
-		message = event['message']
 
 		await self.send(text_data=json.dumps({
 				'url': url,
-				'message': message,
 		}))
 
