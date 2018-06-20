@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Searchbox from './api.js';
 
 class App extends Component {
   constructor(props){
@@ -8,7 +9,7 @@ class App extends Component {
         this.state = {
       url: '',
     }
-      this.handleSearchQuery = this.handleSearchQuery.bind(this);
+   /*   this.handleSearchQuery = this.handleSearchQuery.bind(this); */
       this.logout = this.logout.bind(this);
    }
 
@@ -22,12 +23,12 @@ async componentDidMount () {
       const { default: WebSocket } = await import('./webSocket.js')
     } 
 
-  handleSearchQuery(e){
+/*  handleSearchQuery(e){
     this.setState({
       url: e.target.value,
     });
   }
-
+*/
 
   render() {
     return (
@@ -39,10 +40,7 @@ async componentDidMount () {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-
-     <input type="text" id="search" value={this.state.url} onInput={this.handleSearchQuery} />
-        <p id="qwerty">{this.state.url}</p>
-
+        <Searchbox />
         <button onClick={this.logout}>LOGOUT</button>
       </div>
     );
