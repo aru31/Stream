@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Searchbox from './api.js';
+import SearchBar from './components/Search'
 
 class App extends Component {
   constructor(props){
      super(props) ;
-        this.state = {
-      url: '',
-    }
-   /*   this.handleSearchQuery = this.handleSearchQuery.bind(this); */
+
       this.logout = this.logout.bind(this);
    }
 
@@ -18,18 +15,15 @@ class App extends Component {
     localStorage.removeItem("persist:polls");
     window.location.reload();
     }
-
-async componentDidMount () {
-      const { default: WebSocket } = await import('./webSocket.js')
-    } 
-
-/*  handleSearchQuery(e){
-    this.setState({
-      url: e.target.value,
-    });
-  }
+/*
+ componentDidMount(){
+    this.connection = new WebSocket('ws://localhost:8000/ws/stream/');   
+    this.connection.onopen = () => {console.log('open websocket App.js')};
+    }
+  componentWillUnmount(){
+    this.connection.onclose = () => {console.error('WebSocket Closed App.js')};
+    }
 */
-
   render() {
     return (
       <div className="App">
@@ -40,7 +34,9 @@ async componentDidMount () {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Searchbox />
+        <div className="search">
+        <SearchBar />
+        </div>
         <button onClick={this.logout}>LOGOUT</button>
       </div>
     );
