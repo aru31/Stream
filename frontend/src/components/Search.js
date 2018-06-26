@@ -16,18 +16,29 @@ class SearchBar extends Component {
     }
 
   handleChange = (event) => {
-    searchYouTube({key: API_KEY, term: event.target.value}, (videos) => {
+     if(event.target.value === ""){
         this.setState({
-            videos: videos,
+           videos: []
         });
+     }
+     else{
+      searchYouTube({key: API_KEY, term: event.target.value}, (videos) => {
+          this.setState({
+              videos: videos,
+          });
 
-    });
+      });
+
+    }
 }
 
   
   handleClick = (e) => {
     var Search = document.getElementById('searchBar');
     Search.value = "";
+    this.setState({
+        videos: []   
+      })
     }
 
 
