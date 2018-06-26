@@ -15,15 +15,7 @@ class App extends Component {
     localStorage.removeItem("persist:polls");
     window.location.reload();
     }
-/*
- componentDidMount(){
-    this.connection = new WebSocket('ws://localhost:8000/ws/stream/');   
-    this.connection.onopen = () => {console.log('open websocket App.js')};
-    }
-  componentWillUnmount(){
-    this.connection.onclose = () => {console.error('WebSocket Closed App.js')};
-    }
-*/
+
   render() {
     return (
       <div className="App">

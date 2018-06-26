@@ -16,7 +16,9 @@ handleClick = (event) => {
             var data_format =  {
             'url': id,
         }
-            this.connection.send(JSON.stringify(data_format));
+    window.open("http://localhost:3000/stream"); 
+    setTimeout(()=> {this.connection.send(JSON.stringify(data_format));}, 1000)       
+    this.connection.send(JSON.stringify(data_format));
 }
 
 componentWillUnmount(){
