@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
+import { streamSocket } from './socket.js';
+
+const urlf = "https://www.youtube.com/watch?v=";
 
 
 export default class Stream extends React.Component {
@@ -9,20 +12,18 @@ export default class Stream extends React.Component {
       url: "",
       play: true,
     };
-    this.connection = new WebSocket('ws://localhost:8000/ws/stream/');
 
   }
 
   componentDidMount() {
-    this.connection.onopen = (e) => {
+    streamSocket.onopen = (e) => {
        console.log("Connection Made");
 }
 
-    this.connection.onmessage = (e) => {
+    streamSocket.onmessage = (e) => {
       var data = JSON.parse(e.data);
       var url = data['url']
       var play = data['play']
-      url = "https://www.youtube.com/watch?v=" + url;
       console.log(url);
       console.log(play);
 
@@ -42,7 +43,7 @@ export default class Stream extends React.Component {
       play: this.state.play,
       url: this.state.url,
     };
-    this.connection.send(JSON.stringify(data));
+    streamSocket.send(JSON.stringify(data));
   }
 
   handlePause = () => {
@@ -53,7 +54,7 @@ export default class Stream extends React.Component {
       play: this.state.play,
       url: this.state.url,
     };
-    this.connection.send(JSON.stringify(data));
+    streamSocket.send(JSON.stringify(data));
   }
   
   
@@ -62,7 +63,7 @@ export default class Stream extends React.Component {
   render() {
     return(
     <ReactPlayer className="media"
-      url={this.state.url}
+      url={urlf+this.state.url}
       playing={this.state.play}
       onPlay={this.handlePlay}
       onPause={this.handlePause}

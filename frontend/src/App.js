@@ -11,6 +11,10 @@ class App extends Component {
       this.logout = this.logout.bind(this);
    }
 
+  async componentDidMount () {
+      await import('./components/socket.js');
+    }
+
   logout(e){
     e.preventDefault();
     localStorage.removeItem("persist:polls");

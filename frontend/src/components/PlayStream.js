@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import 'font-awesome/css/font-awesome.min.css';
+import { streamSocket } from './socket.js';
 
 export default class PlayStream extends Component {
   constructor(props){
@@ -19,15 +20,14 @@ export default class PlayStream extends Component {
       play: this.state.play,
       url: this.state.url,
      }
-    this.connection.send(JSON.stringify(data));    
+    streamSocket.send(JSON.stringify(data));    
     });
   }
 
 componentDidMount(){
-    this.connection = new WebSocket('ws://localhost:8000/ws/stream/')
-    this.connection.onopen = (e) => { console.log('Play socket') };
+    streamSocket.onopen = (e) => { console.log('Play socket') };
 
-    this.connection.onmessage = (e) => {
+    streamSocket.onmessage = (e) => {
         var data = JSON.parse(e.data);
         this.setState({
              play: data['play'],
