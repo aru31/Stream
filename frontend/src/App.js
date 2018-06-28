@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import SearchBar from './components/Search'
+import PlayStream from './components/PlayStream'
 
 class App extends Component {
   constructor(props){
@@ -27,7 +28,10 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <div className="search">
-        <SearchBar />
+           <SearchBar />
+        </div>
+        <div className="Player">
+           <PlayStream />
         </div>
         <button onClick={this.logout}>LOGOUT</button>
       </div>

@@ -14,10 +14,9 @@ componentDidMount(){
 handleClick = (event) => {
     var id = this.props.video.id.videoId;
             var data_format =  {
-            'url': id,
-        }
-    window.open("http://localhost:3000/stream"); 
-    setTimeout(()=> {this.connection.send(JSON.stringify(data_format));}, 1000)       
+            url: id,
+            play: true,
+        } 
     this.connection.send(JSON.stringify(data_format));
 }
 

@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0-beta",
+    "font-awesome": "^4.7.0",
     "history": "^4.7.2",
     "jquery": "^3.3.1",
     "jwt-decode": "^2.2.0",
