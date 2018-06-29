@@ -91,7 +91,7 @@ export default class Stream extends React.Component {
 
    handleDuration = () => {
     this.setState({
-      duration: this.player.getDuration(),
+      duration: parseInt(this.player.getDuration()),
     });
     var data = {
       play: this.state.play,
