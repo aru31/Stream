@@ -34,7 +34,7 @@ class App extends Component {
         <div className="search">
            <SearchBar />
         </div>
-        <div className="Player">
+        <div className="play">
            <PlayStream />
         </div>
         <button onClick={this.logout}>LOGOUT</button>

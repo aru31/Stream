@@ -8,6 +8,7 @@ export default class PlayStream extends Component {
     this.state = ({
       play: true,
       url: "",
+      mute: false,
     })
   }
 
@@ -19,8 +20,22 @@ export default class PlayStream extends Component {
     var data = {
       play: this.state.play,
       url: this.state.url,
+      mute: this.state.mute,
      }
     streamSocket.send(JSON.stringify(data));    
+    });
+  }
+
+  handleMute = () => {
+    this.setState ({
+      mute: !this.state.mute
+    }, () => {
+    var data = {
+      play: this.state.play,
+      url: this.state.url,
+      mute: this.state.mute,
+     }
+    streamSocket.send(JSON.stringify(data));
     });
   }
 
@@ -32,6 +47,7 @@ componentDidMount(){
         this.setState({
              play: data['play'],
              url: data['url'],
+             mute: data['mute'],
         });
     }
 
@@ -43,8 +59,8 @@ componentDidMount(){
     return (
       <div>
         <i className={this.state.play ? "fa fa-pause-circle" : "fa fa-play-circle"} onClick={this.handlePlay}></i>
+        <i className={this.state.mute ? "fa fa-volume-off" : "fa fa-volume-up"} onClick={this.handleMute}></i>
       </div>
     ); 
   } 
 }
-

@@ -21,22 +21,25 @@ class StreamConsumer(AsyncWebsocketConsumer):
 		text_data_json = json.loads(text_data)
 		url = text_data_json['url']
 		play = text_data_json['play']
-
+		mute = text_data_json['mute']
 		await self.channel_layer.group_send(
 			"stream",
 			{
 				'type': 'Web_stream',
 				'url': url,
 				'play': play,
+				'mute': mute,
 			}
 		)
 
 	async def Web_stream(self, event):
 		url = event['url']
 		play = event['play']
+		mute = event['mute']
 
 		await self.send(text_data=json.dumps({
 				'url': url,
 				'play': play,
+				'mute': mute,
 		}))
 

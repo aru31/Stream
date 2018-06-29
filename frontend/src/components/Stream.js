@@ -11,6 +11,7 @@ export default class Stream extends React.Component {
     this.state = {
       url: "",
       play: true,
+      mute: false,
     };
 
   }
@@ -24,12 +25,15 @@ export default class Stream extends React.Component {
       var data = JSON.parse(e.data);
       var url = data['url']
       var play = data['play']
+      var mute = data['mute']
       console.log(url);
       console.log(play);
+      console.log(mute);
 
       this.setState ({
           url: url,
           play: play,
+          mute: mute,
         })
       }
     
@@ -42,6 +46,7 @@ export default class Stream extends React.Component {
     var data = {
       play: this.state.play,
       url: this.state.url,
+      mute: this.state.mute,
     };
     streamSocket.send(JSON.stringify(data));
   }
@@ -53,6 +58,7 @@ export default class Stream extends React.Component {
     var data = {
       play: this.state.play,
       url: this.state.url,
+      mute: this.state.mute,
     };
     streamSocket.send(JSON.stringify(data));
   }
@@ -67,6 +73,7 @@ export default class Stream extends React.Component {
       playing={this.state.play}
       onPlay={this.handlePlay}
       onPause={this.handlePause}
+      muted={this.state.mute}
       width="100%"
       height="100%"
     />
