@@ -9,6 +9,8 @@ export default class PlayStream extends Component {
       play: true,
       url: "",
       mute: false,
+      seek: "",
+      duration: "",
     })
   }
 
@@ -21,6 +23,8 @@ export default class PlayStream extends Component {
       play: this.state.play,
       url: this.state.url,
       mute: this.state.mute,
+      seek: this.state.seek,
+      duration: this.state.duration,
      }
     streamSocket.send(JSON.stringify(data));    
     });
@@ -34,6 +38,23 @@ export default class PlayStream extends Component {
       play: this.state.play,
       url: this.state.url,
       mute: this.state.mute,
+      seek: this.state.seek,
+      duration: this.state.duration,
+     }
+    streamSocket.send(JSON.stringify(data));
+    });
+  }
+
+  handleChange = (event) => {
+    this.setState ({
+      seek: event.target.value
+    }, () => {
+    var data = {
+      play: this.state.play,
+      url: this.state.url,
+      mute: this.state.mute,
+      seek: this.state.seek,
+      duration: this.state.duration,
      }
     streamSocket.send(JSON.stringify(data));
     });
@@ -48,6 +69,8 @@ componentDidMount(){
              play: data['play'],
              url: data['url'],
              mute: data['mute'],
+             seek: data['seek'],
+             duration: data['duration'],
         });
     }
 
@@ -58,9 +81,25 @@ componentDidMount(){
   render() {
     return (
       <div>
-        <i className={this.state.play ? "fa fa-pause-circle" : "fa fa-play-circle"} onClick={this.handlePlay}></i>
+        <div>
+            <i className={this.state.play ? "fa fa-pause-circle" : "fa fa-play-circle"} onClick={this.handlePlay}></i>
+        </div>
+        <div>
         <i className={this.state.mute ? "fa fa-volume-off" : "fa fa-volume-up"} onClick={this.handleMute}></i>
+      </div>
+      <div>
+        <input type="range" min="0" max={this.state.duration} value={this.state.seek} onChange={this.handleChange} />
+         <p>{this.state.seek}</p>
+         <p>{this.state.duration}</p>
+      </div>
       </div>
     ); 
   } 
 }
+
+
+
+
+
+
+

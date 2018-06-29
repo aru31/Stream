@@ -12,6 +12,8 @@ export default class Stream extends React.Component {
       url: "",
       play: true,
       mute: false,
+      seek: "",
+      duration: "",
     };
 
   }
@@ -26,14 +28,20 @@ export default class Stream extends React.Component {
       var url = data['url']
       var play = data['play']
       var mute = data['mute']
+      var seek = data['seek']
+      var duration = data['duration']
       console.log(url);
       console.log(play);
       console.log(mute);
+      console.log(seek);
+      console.log(duration);
 
       this.setState ({
           url: url,
           play: play,
           mute: mute,
+          seek: seek,
+          duration: duration,
         })
       }
     
@@ -47,6 +55,8 @@ export default class Stream extends React.Component {
       play: this.state.play,
       url: this.state.url,
       mute: this.state.mute,
+      seek: this.state.seek,
+      duration: this.state.duration,
     };
     streamSocket.send(JSON.stringify(data));
   }
@@ -59,16 +69,50 @@ export default class Stream extends React.Component {
       play: this.state.play,
       url: this.state.url,
       mute: this.state.mute,
+      seek: this.state.seek,
+      duration: this.state.duration,
     };
     streamSocket.send(JSON.stringify(data));
   }
   
-  
+   handleProgress = () => {
+    this.setState({
+      seek: parseInt(this.player.getCurrentTime()),
+    });
+    var data = {
+      play: this.state.play,
+      url: this.state.url,
+      mute: this.state.mute,
+      seek: this.state.seek,
+      duration: this.state.duration,
+    };
+    streamSocket.send(JSON.stringify(data));
+  }
+
+   handleDuration = () => {
+    this.setState({
+      duration: this.player.getDuration(),
+    });
+    var data = {
+      play: this.state.play,
+      url: this.state.url,
+      mute: this.state.mute,
+      seek: this.state.seek,
+      duration: this.state.duration,
+    };
+    streamSocket.send(JSON.stringify(data));
+  }
 
   
+  ref = player => {
+    this.player = player
+  }
+
+
   render() {
     return(
     <ReactPlayer className="media"
+      ref={this.ref}
       url={urlf+this.state.url}
       playing={this.state.play}
       onPlay={this.handlePlay}
@@ -76,6 +120,8 @@ export default class Stream extends React.Component {
       muted={this.state.mute}
       width="100%"
       height="100%"
+      onProgress={this.handleProgress}
+      onDuration={this.handleDuration}
     />
     );
   }
