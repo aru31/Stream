@@ -12,7 +12,7 @@ export default class Stream extends React.Component {
       url: "",
       play: true,
       mute: false,
-      seek: "",
+      seek: 0,
       duration: "",
     };
 
@@ -23,24 +23,40 @@ export default class Stream extends React.Component {
        console.log("Connection Made");
 }
 
-    streamSocket.onmessage = (e) => {
-      var data = JSON.parse(e.data);
+    streamSocket.onmessage = (e) => {      
+     var data = JSON.parse(e.data);
       var url = data['url']
       var play = data['play']
       var mute = data['mute']
       var seek = data['seek']
-      var duration = data['duration']
+      var duration = data['duration']   
+
+     seek = parseInt(seek);
+     var previous = this.player.getCurrentTime();
+   
+     if(seek!==0){
+       if((previous>=seek-5) && (previous<=seek+5)){ 
+          void(0); //pass this value//
+       }
+       else{
+          this.player.seekTo(seek);
+           }
+     }
+     else{
+        this.setState({ seek: seek });
+     }
+
       console.log(url);
       console.log(play);
       console.log(mute);
       console.log(seek);
       console.log(duration);
+      console.log(parseInt(this.player.getCurrentTime()));
 
       this.setState ({
           url: url,
           play: play,
           mute: mute,
-          seek: seek,
           duration: duration,
         })
       }
@@ -86,6 +102,7 @@ export default class Stream extends React.Component {
       seek: this.state.seek,
       duration: this.state.duration,
     };
+    console.log("progress  "+data.play+" "+data.url+" "+data.mute+" "+data.seek+" "+data.duration);
     streamSocket.send(JSON.stringify(data));
   }
 

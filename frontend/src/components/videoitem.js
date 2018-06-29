@@ -15,7 +15,7 @@ handleClick = (event) => {
             url: id,
             play: true,
             mute: false,
-            seek: "",
+            seek: 0,
             duration: "",
         } 
     streamSocket.send(JSON.stringify(data_format));

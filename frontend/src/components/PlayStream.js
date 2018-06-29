@@ -9,7 +9,7 @@ export default class PlayStream extends Component {
       play: true,
       url: "",
       mute: false,
-      seek: "",
+      seek: 0,
       duration: "",
     })
   }
@@ -56,6 +56,7 @@ export default class PlayStream extends Component {
       seek: this.state.seek,
       duration: this.state.duration,
      }
+   console.log("handleSeek  "+data.play+" "+data.url+" "+data.mute+" "+data.seek+" "+data.duration);
     streamSocket.send(JSON.stringify(data));
     });
   }
@@ -65,6 +66,7 @@ componentDidMount(){
 
     streamSocket.onmessage = (e) => {
         var data = JSON.parse(e.data);
+        console.log("Seek  "+data.play+" "+data.url+" "+data.mute+" "+data.seek+" "+data.duration);
         this.setState({
              play: data['play'],
              url: data['url'],
@@ -96,10 +98,5 @@ componentDidMount(){
     ); 
   } 
 }
-
-
-
-
-
 
 
