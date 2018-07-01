@@ -11,6 +11,7 @@ export default class PlayStream extends Component {
       mute: false,
       seek: 0,
       duration: "",
+      volume: "",
     })
   }
 
@@ -25,6 +26,7 @@ export default class PlayStream extends Component {
       mute: this.state.mute,
       seek: this.state.seek,
       duration: this.state.duration,
+      volume: this.state.volume,
      }
     streamSocket.send(JSON.stringify(data));    
     });
@@ -40,6 +42,7 @@ export default class PlayStream extends Component {
       mute: this.state.mute,
       seek: this.state.seek,
       duration: this.state.duration,
+      volume: this.state.volume,
      }
     streamSocket.send(JSON.stringify(data));
     });
@@ -55,8 +58,25 @@ export default class PlayStream extends Component {
       mute: this.state.mute,
       seek: this.state.seek,
       duration: this.state.duration,
+      volume: this.state.volume,
      }
-   console.log("handleSeek  "+data.play+" "+data.url+" "+data.mute+" "+data.seek+" "+data.duration);
+   console.log("handleSeek  "+data.play+" "+data.url+" "+data.mute+" "+data.seek+" "+data.duration+" "+data.volume);
+    streamSocket.send(JSON.stringify(data));
+    });
+  }
+
+  handleVolume = (event) => {
+    this.setState ({
+      volume: event.target.value
+    }, () => {
+    var data = {
+      play: this.state.play,
+      url: this.state.url,
+      mute: this.state.mute,
+      seek: this.state.seek,
+      duration: this.state.duration,
+      volume: this.state.volume,
+     }
     streamSocket.send(JSON.stringify(data));
     });
   }
@@ -66,13 +86,14 @@ componentDidMount(){
 
     streamSocket.onmessage = (e) => {
         var data = JSON.parse(e.data);
-        console.log("Seek  "+data.play+" "+data.url+" "+data.mute+" "+data.seek+" "+data.duration);
+        console.log("Seek  "+data.play+" "+data.url+" "+data.mute+" "+data.seek+" "+data.duration+" "+data.volume);
         this.setState({
              play: data['play'],
              url: data['url'],
              mute: data['mute'],
              seek: data['seek'],
              duration: data['duration'],
+             volume: data['volume'],
         });
     }
 
@@ -91,10 +112,14 @@ componentDidMount(){
       </div>
       <div>
         <input type="range" min="0" max={this.state.duration} value={this.state.seek} onChange={this.handleChange} />
+      </div>
+      <div>
+        <input type="range" min="0" max="20" value={this.state.volume} onChange={this.handleVolume} />
+      </div>
+         <p>{this.state.volume}</p>
          <p>{this.state.seek}</p>
          <p>{this.state.duration}</p>
-      </div>
-      </div>
+    </div>
     ); 
   } 
 }

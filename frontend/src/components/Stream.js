@@ -14,6 +14,7 @@ export default class Stream extends React.Component {
       mute: false,
       seek: 0,
       duration: "",
+      volume: "",
     };
 
   }
@@ -29,7 +30,8 @@ export default class Stream extends React.Component {
       var play = data['play']
       var mute = data['mute']
       var seek = data['seek']
-      var duration = data['duration']   
+      var duration = data['duration']
+      var volume = data['volume']
 
      seek = parseInt(seek);
      var previous = this.player.getCurrentTime();
@@ -46,18 +48,24 @@ export default class Stream extends React.Component {
         this.setState({ seek: seek });
      }
 
+      //Volume set between 0 and 1
+      volume = Number(volume/20);
+    
+  
       console.log(url);
       console.log(play);
       console.log(mute);
       console.log(seek);
       console.log(duration);
       console.log(parseInt(this.player.getCurrentTime()));
+      console.log(volume);
 
       this.setState ({
           url: url,
           play: play,
           mute: mute,
           duration: duration,
+          volume: volume,
         })
       }
     
@@ -73,6 +81,7 @@ export default class Stream extends React.Component {
       mute: this.state.mute,
       seek: this.state.seek,
       duration: this.state.duration,
+      volume: this.state.volume,
     };
     streamSocket.send(JSON.stringify(data));
   }
@@ -87,6 +96,7 @@ export default class Stream extends React.Component {
       mute: this.state.mute,
       seek: this.state.seek,
       duration: this.state.duration,
+      volume: this.state.volume,
     };
     streamSocket.send(JSON.stringify(data));
   }
@@ -101,8 +111,9 @@ export default class Stream extends React.Component {
       mute: this.state.mute,
       seek: this.state.seek,
       duration: this.state.duration,
+      volume: this.state.volume,
     };
-    console.log("progress  "+data.play+" "+data.url+" "+data.mute+" "+data.seek+" "+data.duration);
+    console.log("progress  "+data.play+" "+data.url+" "+data.mute+" "+data.seek+" "+data.duration+" "+data.volume);
     streamSocket.send(JSON.stringify(data));
   }
 
@@ -116,6 +127,7 @@ export default class Stream extends React.Component {
       mute: this.state.mute,
       seek: this.state.seek,
       duration: this.state.duration,
+      volume: this.state.volume,
     };
     streamSocket.send(JSON.stringify(data));
   }
@@ -139,6 +151,7 @@ export default class Stream extends React.Component {
       height="100%"
       onProgress={this.handleProgress}
       onDuration={this.handleDuration}
+      volume={this.state.volume}
     />
     );
   }
