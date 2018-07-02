@@ -47,9 +47,6 @@ export default class Stream extends React.Component {
      else{
         this.setState({ seek: seek });
      }
-
-      //Volume set between 0 and 1
-      volume = Number(volume/20);
     
   
       console.log(url);
@@ -151,7 +148,7 @@ export default class Stream extends React.Component {
       height="100%"
       onProgress={this.handleProgress}
       onDuration={this.handleDuration}
-      volume={this.state.volume}
+      volume={this.state.volume/20}
     />
     );
   }
