@@ -26,7 +26,6 @@ from rest_framework_simplejwt.views import (
 from rest_framework import views, serializers, status
 from rest_framework.response import Response
 
-
 class MessageSerializer(serializers.Serializer):
     message = serializers.CharField()
 
@@ -49,4 +48,5 @@ urlpatterns = [
     url(r'^api/echo/$', EchoView.as_view()),
     path('stream/', include('stream.urls')),
 ]
+
 

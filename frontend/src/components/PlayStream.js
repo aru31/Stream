@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import 'font-awesome/css/font-awesome.min.css';
 import { streamSocket } from './socket.js';
+import Audio from 'react-audioplayer';
 
 export default class PlayStream extends Component {
   constructor(props){
@@ -15,6 +16,28 @@ export default class PlayStream extends Component {
     })
   }
 
+  formatTime = (seco) => {
+    var sec = parseInt(seco, 10);
+    var hours = Math.floor(sec / 3600);
+    var min = Math.floor((sec - (hours * 3600)) / 60);
+    var seconds = (sec - (hours * 3600) - (min * 60));
+    
+    if (hours === 0 && min === 0 && seconds === 0){
+      hours = 0
+      min = 0
+      seconds = 0
+    }
+    if (hours < 10) {
+      hours = "0" + hours;
+    }
+    if (min < 10) {
+      min = "0" + min;
+    }
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+    return hours+':'+min+':'+seconds;
+  }
 
   handlePlay = () => {
     this.setState ({
@@ -113,12 +136,15 @@ componentDidMount(){
       <div>
         <input type="range" min="0" max={this.state.duration} value={this.state.seek} onChange={this.handleChange} />
       </div>
-      <div>
+      <div>Volume
         <input type="range" min="0" max="20" value={this.state.volume} onChange={this.handleVolume} />
       </div>
          <p>{this.state.volume}</p>
-         <p>{this.state.seek}</p>
-         <p>{this.state.duration}</p>
+         <p>{this.formatTime(this.state.seek)}</p>
+         <p>{this.formatTime(this.state.duration)}</p>
+      <div>
+         
+      </div>
     </div>
     ); 
   } 

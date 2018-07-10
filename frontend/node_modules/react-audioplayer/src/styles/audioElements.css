@@ -1,0 +1,221 @@
+:root {
+  --inner-absolute-layout: {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  };
+}
+
+.svgBtnDefault {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  cursor: pointer;
+
+  & > svg {
+    margin: auto;
+  }
+}
+
+.timeLine {
+  width: 400px;
+  height: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > svg > g {
+    cursor: pointer;
+  }
+}
+
+.mainPlayer {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & > .btnStack {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.commentsWrapper {
+  display: flex;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  overflow: hidden;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  & > .albumCoverContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    height: 100%;
+    z-index: 10;
+
+    & > .coverWrapper {
+      position: relative;
+      border: 3px solid #fff;
+      border-radius: 3px;
+      overflow: hidden;
+
+      & > img {
+        width: 100%;
+        height: 100%;
+      }
+
+      & > .fullComment {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(33, 33, 33, 0.9);
+        color: #f5f5f5;
+        font-size: 12px;
+        line-height: 150%;
+        letter-spacing: 0.2px;
+        text-align: center;
+
+        & > p {
+          width: 100%;
+          max-height: 100%;
+          padding: 10px;
+          overflow-y: auto;
+        }
+      }
+    }
+  }
+
+  & > .commentsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+    padding-bottom: 10px;
+    position: relative;
+    z-index: 10;
+
+    & .comment {
+      width: 90%;
+      padding: 0 10px;
+      background-color: rgba(255, 255, 255, 0.85);
+      overflow: hidden;
+      color: #212121;
+      line-height: 35px;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: pointer;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #9e9e9e;
+      }
+
+      &:first-child {
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+    }
+  }
+
+  & > .commentsWrapperBackgroundMask {
+    @apply --inner-absolute-layout;
+
+    background-color: rgba(28, 28, 28, 0.28);
+    z-index: 5;
+  }
+
+  & > .commentsWrapperBackground {
+    @apply --inner-absolute-layout;
+
+    background-size: cover;
+    background-position: center center;
+    filter: blur(3px);
+    z-index: 0;
+  }
+}
+
+.commentInputContainer {
+  display: flex;
+  width: auto;
+  height: 40px;
+
+  & > form {
+    width: auto;
+    height: 30px;
+    margin: 0 2px;
+    border: none;
+    outline: none;
+
+    & > input {
+      height: 100%;
+      border: none;
+      outline: none;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+.timeNameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100px;
+  height: 40px;
+  margin-left: auto;
+  padding: 0 10px;
+  user-select: none;
+  cursor: default;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  & > .nameContainer {
+    font-size: 10.5px;
+    width: 100%;
+    height: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  & > .timeContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 20px;
+
+    & > .time {
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+
+    & > span {
+      margin: 0 3px;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+sudo: false
+
+language: node_js
+
+node_js:
+  - "6"
+
+env:
+  matrix:
+    - TEST_TYPE=compile
+    - TEST_TYPE=test
+
+before_script:
+  - npm install -g yarn
+
+script:
+  - |
+    if [ "$TEST_TYPE" = compile ]; then
+      npm run build
+    elif [ "$TEST_TYPE" = dist ]; then
+      npm run test-s
+    fi
