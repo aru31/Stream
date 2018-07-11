@@ -1,23 +1,12 @@
 {% for namee in users  %}
   {% if namee.is_superuser is False %}
-   <p>Username: {{ namee.username }}</p>
-    <ul>
-      <li>Id: {{namee.id}}</li>
-      <li>Email: {{ namee.email }}</li>
-      <li class="active toggle">is_active: {{ namee.is_active }}</li>
-      <form action="/stream/user/register/{{ namee.id }}/" method="put">
-        {% csrf_token  %}
-          <div>
-            Name: <input type="text" class="name" name="first_name" value="{{ namee.first_name }}">
-          </div>
-          {% if namee.is_active is True %}
-            <input type="radio" class="toggle" name="is_active" value=True  checked>Active<br>
-            <input type="radio" class="toggle" name="is_active" value=False>Not Active<br>
-          {% else  %}
-            <input type="radio" class="toggle" name="is_active" value=True>Active<br>
-            <input type="radio" class="toggle" name="is_active" value=False checked>Not Active<br>
-          {% endif %}
-     </form>
-  </ul>
+   <form action="{{ namee.id }}" method="get">
+    {% csrf_token %}
+    Username: {{ namee.username }}<br/>
+    First Name: {{ namee.first_name }}<br/>
+    Last Name: {{ namee.last_name }}<br/>
+    Active: {{ namee.is_active }}<br/>
+    <input type="submit" value="Permissions" />
+</form>
   {% endif %}
 {% endfor %}

@@ -5,9 +5,18 @@ from django.contrib.auth import get_user_model
 from .serializers import UserSerializer, UserDetailSerializer
 from rest_framework import permissions
 from django.views import generic
+from django.urls import reverse_lazy
+from django.views.generic.edit import UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # Create your views here.
 
+class AdminStaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
+
+    login_url = '/admin/login/?next=/admin/'
+    
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.is_staff
 
 class CreateUserView(generics.ListCreateAPIView):
 	model = get_user_model()
@@ -23,7 +32,7 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 	serializer_class = UserDetailSerializer
 
 
-class AdminView(generic.ListView):
+class AdminView(AdminStaffRequiredMixin, generic.ListView):
 	template_name = 'stream/admin.html'
 	context_object_name = 'users'
 
@@ -31,3 +40,9 @@ class AdminView(generic.ListView):
 		model = get_user_model()
 		return model.objects.all()
 
+
+class AdminUpdateView(AdminStaffRequiredMixin, UpdateView):
+	model = get_user_model()
+	fields = ['is_active']
+	template_name = 'stream/user_update.html'
+	success_url = reverse_lazy('admin')
