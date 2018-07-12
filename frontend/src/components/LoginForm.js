@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import { Alert, Button, Jumbotron,  Form } from 'reactstrap';
-
 import TextInput from './TextInput'
-
 
 export default class LoginForm extends Component {
   state = {
@@ -23,6 +21,10 @@ export default class LoginForm extends Component {
 
   onSubmit = (event) => {
     event.preventDefault()
+    const Streamuser = {
+      username: this.state.username
+    }
+    console.log(Streamuser.username)
     this.props.onSubmit(this.state.username, this.state.password)
   }
 
@@ -54,3 +56,4 @@ export default class LoginForm extends Component {
     )
   }
 }
+

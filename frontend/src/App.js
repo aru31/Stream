@@ -3,7 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import SearchBar from './components/Search'
 import PlayStream from './components/PlayStream'
-
+/*import Streamuser from './components/LoginForm'
+*/
 class App extends Component {
   constructor(props){
      super(props) ;
@@ -13,6 +14,7 @@ class App extends Component {
 
   async componentDidMount () {
       await import('./components/socket.js');
+  /*    console.log(Streamuser) */
     }
 
   logout(e){

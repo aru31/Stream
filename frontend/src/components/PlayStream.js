@@ -12,7 +12,9 @@ export default class PlayStream extends Component {
       mute: false,
       seek: 0,
       duration: "",
-      volume: "",
+      volume: 10,
+      title: "",
+      thumbnail: "",
     })
   }
 
@@ -50,6 +52,8 @@ export default class PlayStream extends Component {
       seek: this.state.seek,
       duration: this.state.duration,
       volume: this.state.volume,
+      title: this.state.title,
+      thumbnail: this.state.thumbnail,
      }
     streamSocket.send(JSON.stringify(data));    
     });
@@ -66,6 +70,8 @@ export default class PlayStream extends Component {
       seek: this.state.seek,
       duration: this.state.duration,
       volume: this.state.volume,
+      title: this.state.title,
+      thumbnail: this.state.thumbnail,
      }
     streamSocket.send(JSON.stringify(data));
     });
@@ -82,6 +88,8 @@ export default class PlayStream extends Component {
       seek: this.state.seek,
       duration: this.state.duration,
       volume: this.state.volume,
+      title: this.state.title,
+      thumbnail: this.state.thumbnail,
      }
    console.log("handleSeek  "+data.play+" "+data.url+" "+data.mute+" "+data.seek+" "+data.duration+" "+data.volume);
     streamSocket.send(JSON.stringify(data));
@@ -99,6 +107,8 @@ export default class PlayStream extends Component {
       seek: this.state.seek,
       duration: this.state.duration,
       volume: this.state.volume,
+      title: this.state.title,
+      thumbnail: this.state.thumbnail,
      }
     streamSocket.send(JSON.stringify(data));
     });
@@ -117,6 +127,8 @@ componentDidMount(){
              seek: data['seek'],
              duration: data['duration'],
              volume: data['volume'],
+             title: data['title'],
+             thumbnail: data['thumbnail'],
         });
     }
 
@@ -136,14 +148,15 @@ componentDidMount(){
       <div>
         <input type="range" min="0" max={this.state.duration} value={this.state.seek} onChange={this.handleChange} />
       </div>
-      <div>Volume
-        <input type="range" min="0" max="20" value={this.state.volume} onChange={this.handleVolume} />
+      <div>
+        Volume <input type="range" min="0" max="20" value={this.state.volume} onChange={this.handleVolume} />
       </div>
          <p>{this.state.volume}</p>
          <p>{this.formatTime(this.state.seek)}</p>
          <p>{this.formatTime(this.state.duration)}</p>
       <div>
-         
+         <p className="title">{this.state.title}</p>
+        <img className="thumbnail" src={this.state.thumbnail} />
       </div>
     </div>
     ); 

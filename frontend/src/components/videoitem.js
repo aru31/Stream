@@ -11,13 +11,17 @@ constructor(props){
 
 handleClick = (event) => {
     var id = this.props.video.id.videoId;
+    var title = this.props.video.snippet.title;
+    var thumbnail = this.props.video.snippet.thumbnails.default.url;
             var data_format =  {
             url: id,
             play: true,
             mute: false,
             seek: 0,
             duration: "",
-            volume: "",
+            volume: 10,
+            title: title,
+            thumbnail: thumbnail,
         } 
     streamSocket.send(JSON.stringify(data_format));
 }
@@ -26,9 +30,9 @@ handleClick = (event) => {
 render(){
     return(
        <div className="VideoResult" id={this.props.video.id.videoId} onClick={this.handleClick}>
+       <div>{this.props.video.snippet.channelTitle}</div>
        <img className="image" src={this.props.video.snippet.thumbnails.default.url} />
-       <div>{this.props.video.snippet.title}</div> 
-       <div>{this.props.video.snippet.channelTitle}</div>  
+       <div>{this.props.video.snippet.title}</div>   
 </div>
 );}
 }

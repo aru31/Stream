@@ -14,7 +14,9 @@ export default class Stream extends React.Component {
       mute: false,
       seek: 0,
       duration: "",
-      volume: "",
+      volume: 10,
+      title: "",
+      thumbnail: "",
     };
 
   }
@@ -32,6 +34,8 @@ export default class Stream extends React.Component {
       var seek = data['seek']
       var duration = data['duration']
       var volume = data['volume']
+      var title = data['title']
+      var thumbnail = data['thumbnail']
 
      seek = parseInt(seek);
      var previous = this.player.getCurrentTime();
@@ -56,6 +60,8 @@ export default class Stream extends React.Component {
       console.log(duration);
       console.log(parseInt(this.player.getCurrentTime()));
       console.log(volume);
+      console.log(title);
+      console.log(thumbnail);
 
       this.setState ({
           url: url,
@@ -63,6 +69,8 @@ export default class Stream extends React.Component {
           mute: mute,
           duration: duration,
           volume: volume,
+          title: title,
+          thumbnail: thumbnail,
         })
       }
     
@@ -79,6 +87,8 @@ export default class Stream extends React.Component {
       seek: this.state.seek,
       duration: this.state.duration,
       volume: this.state.volume,
+      title: this.state.title,
+      thumbnail: this.state.thumbnail,
     };
     streamSocket.send(JSON.stringify(data));
   }
@@ -94,6 +104,8 @@ export default class Stream extends React.Component {
       seek: this.state.seek,
       duration: this.state.duration,
       volume: this.state.volume,
+      title: this.state.title,
+      thumbnail: this.state.thumbnail,
     };
     streamSocket.send(JSON.stringify(data));
   }
@@ -109,6 +121,8 @@ export default class Stream extends React.Component {
       seek: this.state.seek,
       duration: this.state.duration,
       volume: this.state.volume,
+      title: this.state.title,
+      thumbnail: this.state.thumbnail,
     };
     console.log("progress  "+data.play+" "+data.url+" "+data.mute+" "+data.seek+" "+data.duration+" "+data.volume);
     streamSocket.send(JSON.stringify(data));
@@ -125,6 +139,8 @@ export default class Stream extends React.Component {
       seek: this.state.seek,
       duration: this.state.duration,
       volume: this.state.volume,
+      title: this.state.title,
+      thumbnail: this.state.thumbnail,
     };
     streamSocket.send(JSON.stringify(data));
   }

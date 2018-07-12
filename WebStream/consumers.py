@@ -25,6 +25,8 @@ class StreamConsumer(AsyncWebsocketConsumer):
 		seek = text_data_json['seek']
 		duration = text_data_json['duration']
 		volume = text_data_json['volume']
+		title = text_data_json['title']
+		thumbnail = text_data_json['thumbnail']
 		await self.channel_layer.group_send(
 			"stream",
 			{
@@ -35,6 +37,8 @@ class StreamConsumer(AsyncWebsocketConsumer):
 				'seek': seek,
 				'duration': duration,
 				'volume': volume,
+				'title': title,
+				'thumbnail': thumbnail,
 			}
 		)
 
@@ -45,6 +49,8 @@ class StreamConsumer(AsyncWebsocketConsumer):
 		seek = event['seek']
 		duration = event['duration']
 		volume = event['volume']
+		title = event['title']
+		thumbnail = event['thumbnail']
 
 		await self.send(text_data=json.dumps({
 				'url': url,
@@ -53,5 +59,7 @@ class StreamConsumer(AsyncWebsocketConsumer):
 				'seek': seek,
 				'duration': duration,
 				'volume': volume,
+				'title': title,
+				'thumbnail': thumbnail,
 		}))
 
