@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import SearchBar from './components/Search'
 import PlayStream from './components/PlayStream'
+import './App.css';
+import logo from './logo.svg';
+
 /*import Streamuser from './components/LoginForm'
 */
 class App extends Component {
@@ -27,19 +28,20 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <div className="logo_container">
+            <img src={logo} className="App-logo" alt="logo" />
+          </div>
+          <h1 className="App-title">Viberr</h1>
+        <button onClick={this.logout} className="logout">LOGOUT</button>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
         <div className="search">
            <SearchBar />
         </div>
+        <footer className="audioplayer">
         <div className="play">
            <PlayStream />
         </div>
-        <button onClick={this.logout}>LOGOUT</button>
+        </footer>
       </div>
     );
   }

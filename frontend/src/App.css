@@ -1,28 +1,90 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css?family=Gloria+Hallelujah');
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.App {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  max-height: 100vh;
+  overflow: auto;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+  background-color: #0e1111;
+  min-height: 100px;
+  height: 100px;
+  max-width: 100vw;
+  padding: 0;
+  margin: 0;
   color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
+}
+
+.logo_container{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100px;
+    min-height: 100px;
 }
 
 .App-title {
-  font-size: 1.5em;
+    align-self: center;
+    margin: auto;
+    margin-top: 7px;
+    font-family: 'Gloria Hallelujah';
+    font-size: 45px;
+    color: orange;
+    transition-duration: 0.2s;
+}
+
+.App-title:hover{
+    font-color: #f7bd00;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .App-intro {
-  font-size: large;
+    font-size: large;
+}
+
+.logout{
+    position: relative;
+    margin-left: auto;
+    transition-duration: 0.2s;
+    background-color: #0e1111;
+    color: orange;
+    font-family: 'Gloria Hallelujah';
+}
+
+.logout:hover{
+    font-color: #f7bd00;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search{
+    margin: 10px;
+    text-align: center;
 }
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.audioplayer{
+    margin: 0;
+    margin-top: auto;
 }

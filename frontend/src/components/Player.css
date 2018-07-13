@@ -1,0 +1,186 @@
+$primary: #49654D;
+$secondary: #8BA989;
+$white: #FFFFFF;
+$light: #C0CFB2;
+$dark: #364F3C;
+
+@import url('https://fonts.googleapis.com/css?family=Questrial');
+$font: 'Questrial', sans-serif;
+
+html {
+  min-height: 100%;
+  display: grid;
+}
+
+body {
+  background: linear-gradient(to bottom left, $light 10%, $secondary 80%);
+  display: grid;
+  overflow: hidden;
+}
+
+#player {
+  background: $white;
+  position: relative;
+  margin: auto;
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px rgba($dark, .4);
+  -webkit-transition: all .5s ease-in-out;
+  transition:all .5s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.album {
+  
+  background: linear-gradient(rgba($dark, 0.25), rgba($primary, 0.55)),        url('http://4.bp.blogspot.com/-pcPjBBdE_K8/U7v4oEX3M8I/AAAAAAAAD2I/6dWyzgiPzkQ/s1600/Clean+BAndit+Album+.jpg');
+  background-repeat: no-repeat;
+  background-size: 300px;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.heart {
+  position: absolute;
+  right: 0;
+  color: $white;
+  margin: 10px;
+  transition: all .4s ease;
+}
+
+.clicked {
+  color: $primary;
+  transform: scale(1.2);
+  transition: all .4s ease;
+}
+
+.info {
+  height: 115px;
+  width: 100%;
+  position: absolute;
+  bottom:0;
+  background: rgba($white, .85);
+  transform: translateY(35px);
+  transition: all .5s ease-in-out;
+}
+
+.up {
+  transform: translateY(0px);
+}
+
+.progress-bar {
+  height: 5px;
+  width: 73%;
+  margin: 6% auto;
+  background: lighten($light, 5%);
+  border-radius: 10px;
+  font-family: $font;
+}
+
+.fill {
+  background-color: $secondary;
+  width: 35%;
+  height: 0.3rem;
+  border-radius: 2px;
+}
+
+.time--current, .time--total {
+  color: $dark;
+  font-size: 10px;
+  position: absolute;
+  margin-top: -2px;
+}
+
+.time--current {
+  left: 15px;
+}
+
+.time--total {
+  right: 15px;
+}
+
+.currently-playing {
+  text-align: center;
+  margin-top: -3px;
+}
+
+.song-name, .artist-name {
+  font-family: $font;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.song-name {
+  font-size: .8em;
+  letter-spacing: 3px;
+  color: $dark;
+}
+
+.artist-name {
+  font-size: .6em;
+  letter-spacing: 1.5px;
+  color: lighten($dark, 15%);
+  margin-top: 5px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  font-size: .8em;
+  justify-content: center;
+  color: $secondary;
+  .play, .pause {
+    margin: 15px 25px;
+    color: darken($secondary, 10%);
+  }
+  .option {
+    left: 10px;
+    position: absolute;
+    font-size: .8em;
+  }
+  .add {
+    right: 10px; 
+    position: absolute;
+    font-size: .8em;
+  }
+  .volume {
+    margin-right: 30px;
+    font-size: .8em;
+  }
+  .shuffle {
+    margin-left: 30px;
+    font-size: .8em;
+  }
+}
+
+.play, .pause, .next, .previous, .option, .add, .volume, .shuffle {
+  transition: all .5s ease;
+  &:hover {
+    color: lighten($dark, 15%);
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.5em;
+  text-transform: uppercase;
+  padding: 10px;
+  color: $primary;
+  letter-spacing: 3px;
+  font-family: $font;
+  a {
+    color: #ffffff;
+    text-decoration: none;
+    &:hover {
+      color: $primary;
+    }
+  }
+}

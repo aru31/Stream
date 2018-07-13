@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-
 import searchYouTube from 'youtube-api-search'
 import VideoList from "./videolist"
+import '../css/search.css'
 
 const API_KEY = "AIzaSyC8Ga_Sq2z0eeTZPYDHZd5ii5RQxgmXOVM"
 
@@ -45,9 +45,9 @@ class SearchBar extends Component {
   render() {
 
     return (
-        <div>
-            <input type="search" onChange={this.handleChange} id="searchBar"/>
-            <div onClick={this.handleClick}>
+        <div className="Searchcontainer">
+           <label><input type="search" onChange={this.handleChange} placeholder="Search.." className="searchBar" id="searchBar"/></label>
+            <div className="searchbox" onClick={this.handleClick}>
             <VideoList videos={this.state.videos} />
         </div></div>
     );
