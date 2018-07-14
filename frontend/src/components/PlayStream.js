@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import 'font-awesome/css/font-awesome.min.css';
 import { streamSocket } from './socket.js';
+import '../css/player.css';
 
 export default class PlayStream extends Component {
   constructor(props){
@@ -137,30 +138,28 @@ componentDidMount(){
 
   render() {
     return (
-      <div id="player">
-          <div>
-            <i className={this.state.play ? "fa fa-pause-circle" : "fa fa-play-circle"} onClick={this.handlePlay}></i>
-          </div>
-          <div>
-            <i className={this.state.mute ? "fa fa-volume-off" : "fa fa-volume-up"} onClick={this.handleMute}></i>
-          </div>
-          <div>
-            <input type="range" min="0" max={this.state.duration} value={this.state.seek} onChange={this.handleChange} />
-          </div>
-          <div>
-            Volume <input type="range" min="0" max="20" value={this.state.volume} onChange={this.handleVolume} />
-          </div>
-            <p>{this.state.volume}</p>
+       <div id="stream-player">
+         <img className="thumbnail" src={this.state.thumbnail}/>
+           <div className="play-pause">
+             <i className={this.state.play ? "fa fa-pause-circle" : "fa fa-play-circle"} onClick={this.handlePlay}></i>
+           </div>
+           <div className="mute">
+             <i className={this.state.mute ? "fa fa-volume-off" : "fa fa-volume-up"} onClick={this.handleMute}></i>
+           </div>
+           <div className="volume">
+             Volume <input type="range" min="0" max="20" value={this.state.volume} onChange={this.handleVolume} />
+           </div>
+           <div className="seek">
+             <input type="range" min="0" max={this.state.duration} value={this.state.seek} onChange={this.handleChange} />
+           </div>
             <p>{this.formatTime(this.state.seek)}</p>
             <p>{this.formatTime(this.state.duration)}</p>
           <div>
             <p className="title">{this.state.title}</p>
-            <img className="thumbnail" src={this.state.thumbnail} />
-         </div>
-    </div>
+          </div>
+     </div>
 
     ); 
   } 
 }
-
 

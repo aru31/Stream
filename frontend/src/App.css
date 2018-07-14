@@ -68,6 +68,22 @@
     font-family: 'Gloria Hallelujah';
 }
 
+.profile{
+    position: relative;
+    margin-left: auto;
+    margin-right: -15vw;
+    transition-duration: 0.2s;
+    background-color: #0e1111;
+    color: orange;
+    font-family: 'Gloria Hallelujah';
+}
+
+.profile:hover{
+    font-color: #f7bd00;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 .logout:hover{
     font-color: #f7bd00;
     font-weight: bold;

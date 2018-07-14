@@ -14,6 +14,7 @@ import Login from './containers/Login';
 import PrivateRoute from './containers/PrivateRoute';
 import Register from './containers/Register';
 import Stream from './components/Stream';
+import Profile from './components/profile';
 
 const history = createHistory()
 const store = configureStore(history)
@@ -24,6 +25,7 @@ ReactDOM.render((
       <Switch>
         <Route exact path="/register/" component={Register} />
         <Route exact path="/login/" component={Login} />
+        <Route exact path="/profile/" component={Profile} />
         <Route exact path="/stream/" component={Stream} />
         <PrivateRoute path="/" component={App}/>
       </Switch>

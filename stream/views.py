@@ -30,7 +30,7 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
 	model = get_user_model()
 	queryset = model.objects.all()
 	serializer_class = UserDetailSerializer
-
+	permission_classes = (permissions.AllowAny,)
 
 class AdminView(AdminStaffRequiredMixin, generic.ListView):
 	template_name = 'stream/admin.html'
