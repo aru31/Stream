@@ -14,12 +14,17 @@ pip install -r requirements.txt
 
 and then activate virtual environment
 
-Now to start the django server
+Now to start the django Server
 
 ```
 python3.6 manage.py runserver
 ```
 
+and then to start the React Server go to the frontend directory
+
+```
+npm start
+```
 then open the following window in browser on your machine
 
 ```
