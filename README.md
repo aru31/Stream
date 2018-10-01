@@ -12,7 +12,11 @@ then in base directory
 pip install -r requirements.txt
 ```
 
-and then activate virtual environment
+and then activate virtual environment.To activate virtual environment
+1-virtual "virtualenv_name"
+2-source "virtual_name"/bin/activate for LINUX
+      OR
+  "virtual_name"\Scripts\activate for Windows   
 
 Now to start the django Server
 
