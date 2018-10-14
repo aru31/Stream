@@ -3,6 +3,7 @@
     margin: 0;
     max-width: 100vw;
     text-align: center;
+    justify-content: center;
 }
 
 .searchBar{
@@ -19,7 +20,7 @@
 }
 
 .searchbox{
-    width: 70vw;
+    width: 75vw;
     max-width: 800px;
     text-align: center;
     padding: 0;
@@ -44,7 +45,7 @@ input::placeholder{
 .searchlist{
     padding: 0px;
     position: absolute;
-    z-index: 0;
+    z-index: 1;
 }
 
 .videoresult{
@@ -86,6 +87,6 @@ input::placeholder{
 
 .videoresult:hover {
     border-top-width: 1px;
-    background-color: lightgrey;
+    background-color: yellow;
 }
 
