@@ -93,6 +93,7 @@
 .search{
     margin: 10px;
     text-align: center;
+    justify-content: center;
 }
 
 @keyframes App-logo-spin {
