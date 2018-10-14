@@ -4,6 +4,7 @@ html, body, #root {
   min-height: 100vh;
   width: 100%;
   display: flex;
+  box-size: inherit;
 }
 
 body {
