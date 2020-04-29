@@ -7,7 +7,7 @@
     "bootstrap": "^4.0.0-beta",
     "font-awesome": "^4.7.0",
     "history": "^4.7.2",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "jwt-decode": "^2.2.0",
     "react": "^16.4.0",
     "react-audioplayer": "^0.3.1",
