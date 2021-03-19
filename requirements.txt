@@ -21,7 +21,7 @@ hyperlink==18.0.0
 idna==2.8
 incremental==17.5.0
 itypes==1.1.0
-Jinja2==2.10
+Jinja2==2.11.3
 MarkupSafe==1.1.0
 msgpack==0.6.1
 pkg-resources==0.0.0
