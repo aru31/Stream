@@ -14,7 +14,7 @@ coreschema==0.0.4
 daphne==2.2.5
 Django==2.1.7
 django-cors-headers==2.4.0
-djangorestframework==3.9.1
+djangorestframework==3.11.2
 djangorestframework-simplejwt==3.3
 hiredis==1.0.0
 hyperlink==18.0.0
